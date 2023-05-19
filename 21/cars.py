@@ -16,7 +16,7 @@ def get_all_jeeps(cars: CarsType = cars) -> str:
     Retrieve the 'Jeep' models from the cars dict and join them by a
     comma and space (', '). Leave the original ordering intact.
     """
-    pass
+    return ", ".join(cars["Jeep"])
 
 
 def get_first_model_each_manufacturer(cars: CarsType = cars) -> List[str]:
