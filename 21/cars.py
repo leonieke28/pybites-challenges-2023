@@ -25,7 +25,7 @@ def get_first_model_each_manufacturer(cars: CarsType = cars) -> List[str]:
     manufacturer. Return the matching models in a list leaving the original
     ordering intact.
     """
-    pass
+    return [car[0] for car in cars.values()]
 
 
 def get_all_matching_models(
