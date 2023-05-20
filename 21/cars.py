@@ -46,4 +46,9 @@ def sort_car_models(cars: CarsType = cars) -> CarsType:
     Loop through the cars dict returning a new dict with the
     same keys and the values sorted alphabetically.
     """
-    pass
+    sorted_cars = dict(sorted(cars.items(), key=lambda x: x[0]))
+
+    for key in sorted_cars:
+        sorted_cars[key] = sorted(sorted_cars[key])
+
+    return sorted_cars
