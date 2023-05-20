@@ -32,11 +32,13 @@ def get_all_matching_models(
     cars: CarsType = cars, grep: str = DEFAULT_SEARCH
 ) -> List[str]:
     """
-    Return a list of all models containing the case insensitive
+    Return a list of all models containing the case-insensitive
     'grep' string which defaults to DEFAULT_SEARCH ('trail').
     Sort the resulting sequence alphabetically
     """
-    pass
+    # all_models = sum(list(cars.values()), [])
+    all_models = list(sum(list(cars.values()), []))
+    return sorted(list(filter(lambda x: grep.casefold() in x.casefold(), all_models)))
 
 
 def sort_car_models(cars: CarsType = cars) -> CarsType:
