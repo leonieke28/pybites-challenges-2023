@@ -36,7 +36,6 @@ def get_all_matching_models(
     'grep' string which defaults to DEFAULT_SEARCH ('trail').
     Sort the resulting sequence alphabetically
     """
-    # all_models = sum(list(cars.values()), [])
     all_models = list(sum(list(cars.values()), []))
     return sorted(list(filter(lambda x: grep.casefold() in x.casefold(), all_models)))
 
