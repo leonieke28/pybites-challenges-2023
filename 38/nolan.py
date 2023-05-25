@@ -13,7 +13,7 @@ xmlstring = """<?xml version="1.0" encoding="UTF-8"?>
 
 def get_tree():
     """You probably want to use ET.fromstring"""
-    pass
+    return ET.fromstring(xmlstring)
 
 
 def get_movies():
