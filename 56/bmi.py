@@ -13,7 +13,14 @@ def create_parser():
     """TODO:
     Create an ArgumentParser adding the right arguments to pass the tests,
     returns a argparse.ArgumentParser object"""
-    pass
+    parser = argparse.ArgumentParser(
+        prog="BMI Calculator", description="This program calculates your BMI"
+    )
+
+    parser.add_argument("-l", "--length")
+    parser.add_argument("-w", "--weight")
+
+    return parser
 
 
 def handle_args(args=None):
