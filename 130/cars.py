@@ -9,8 +9,6 @@ CAR_DATA = "https://bites-data.s3.us-east-2.amazonaws.com/cars.json"
 with requests.Session() as s:
     data = s.get(CAR_DATA).json()
 
-print(data[:10])
-
 
 # your turn:
 def most_prolific_automaker(year):
