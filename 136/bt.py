@@ -36,16 +36,71 @@ blood_type_text = {
     "AB+": Bloodtype.AB_POS,
 }
 
+
 # complete :
 def check_bt(donor, recipient):
-    """Checks red blood cell compatibility based on 8 blood types
-    Args:
-    donor (int | str | Bloodtype): red blood cell type of the donor
-    recipient (int | str | Bloodtype): red blood cell type of the recipient
-    Returns:
-    bool: True for compatability, False otherwise.
-    """
-    pass
+    if isinstance(donor, int) and isinstance(recipient, int):
+        if donor < 0 or donor > 7 or recipient < 0 or recipient > 7:
+            raise ValueError
+    elif isinstance(donor, str) and isinstance(recipient, str):
+        if donor not in blood_type_text or recipient not in blood_type_text:
+            raise ValueError
+        donor, recipient = blood_type_text[donor], blood_type_text[recipient]
+    elif not isinstance(donor, Bloodtype) or not isinstance(recipient, Bloodtype):
+        raise TypeError
+    if recipient == Bloodtype.AB_POS:
+        return donor in (
+            Bloodtype.ZERO_NEG,
+            Bloodtype.ZERO_POS,
+            Bloodtype.A_NEG,
+            Bloodtype.A_POS,
+            Bloodtype.B_NEG,
+            Bloodtype.B_POS,
+            Bloodtype.AB_NEG,
+            Bloodtype.AB_POS,
+        )
+    if donor == Bloodtype.ZERO_NEG:
+        # return recipient in (Bloodtype.ZERO_NEG, Bloodtype.ZERO_POS)
+        return recipient in (
+            Bloodtype.ZERO_NEG,
+            Bloodtype.ZERO_POS,
+            Bloodtype.A_NEG,
+            Bloodtype.A_POS,
+            Bloodtype.B_NEG,
+            Bloodtype.B_POS,
+            Bloodtype.AB_NEG,
+            Bloodtype.AB_POS,
+        )
+    elif donor == Bloodtype.ZERO_POS:
+        return recipient in (
+            Bloodtype.ZERO_POS,
+            Bloodtype.A_POS,
+            Bloodtype.B_POS,
+            Bloodtype.AB_POS,
+        )
+    elif donor == Bloodtype.B_NEG:
+        return recipient in (
+            Bloodtype.B_NEG,
+            Bloodtype.B_POS,
+            Bloodtype.AB_NEG,
+            Bloodtype.AB_POS,
+        )
+    elif donor == Bloodtype.B_POS:
+        return recipient in (Bloodtype.B_POS, Bloodtype.AB_POS)
+    elif donor == Bloodtype.A_NEG:
+        return recipient in (
+            Bloodtype.A_NEG,
+            Bloodtype.A_POS,
+            Bloodtype.AB_NEG,
+            Bloodtype.AB_POS,
+        )
+    elif donor == Bloodtype.A_POS:
+        return recipient in (Bloodtype.A_POS, Bloodtype.AB_POS)
+    elif donor == Bloodtype.AB_NEG:
+        return recipient == Bloodtype.AB_NEG
+    elif donor == Bloodtype.AB_POS:
+        return True
+    return False
 
 
 # hint
