@@ -6,8 +6,14 @@ group3 = {"brenda": 17, "otto": 44, "thomas": 46}
 
 
 def get_person_age(name):
-    """Look up name (case insensitive search) and return age.
+    """Look up name (case-insensitive search) and return age.
     If name in > 1 dict, return the match of the group with
     greatest N (so group3 > group2 > group1)
     """
-    pass
+    merged_groups = group1 | group2 | group3
+    if not isinstance(name, str):
+        return "Not found"
+    if name.casefold() in merged_groups:
+        return merged_groups.get(name.casefold())
+    if name.casefold() not in merged_groups:
+        return "Not found"
