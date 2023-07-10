@@ -1,3 +1,4 @@
+from pprint import pprint
 from typing import List
 
 DEFAULT_SHELL = "bash"
@@ -43,4 +44,8 @@ def get_users_for_shell(
     """Match the passwd_output string for users with grep_shell.
     Return a list of users.
     """
-    pass
+    return [
+        output.split(":")[0]
+        for output in passwd_output.split("\n")
+        if output.endswith(f"/{grep_shell}")
+    ]
