@@ -1,4 +1,7 @@
-def sum_numbers(numbers):
+from typing import List
+
+
+def sum_numbers(numbers: List[float]) -> float:
     """Sums numbers
 
     :param numbers: a list of numbers
