@@ -3,21 +3,20 @@ import pytest
 from numbers_to_dec import list_to_decimal
 
 
-def test_correct_input():
-    assert list_to_decimal([0, 4, 2, 8]) == 428
-    assert list_to_decimal([1, 2]) == 12
-    assert list_to_decimal([3]) == 3
-
-
 @pytest.mark.parametrize(
-    "wrong_input_type", [[6, 2, True], [3.6, 4, 1], ["4", 5, 3, 1]]
+    "test_input, expected", [([0, 4, 2, 8], 428), ([1, 2], 12), ([3], 3)]
 )
-def test_type_errors(wrong_input_type):
+def test_list_to_decimal(test_input, expected):
+    assert list_to_decimal(test_input) == expected
+
+
+@pytest.mark.parametrize("test_input", [[6, 2, True], [3.6, 4, 1], ["4", 5, 3, 1]])
+def test_type_error(test_input):
     with pytest.raises(TypeError):
-        list_to_decimal(wrong_input_type)
+        output = list_to_decimal(test_input)
 
 
-@pytest.mark.parametrize("wrong_input_values", [[-3, 12], [11, 23]])
-def test_value_errors(wrong_input_values):
+@pytest.mark.parametrize("test_input", [[-3, 5], [23, 11, 1]])
+def test_value_error(test_input):
     with pytest.raises(ValueError):
-        list_to_decimal(wrong_input_values)
+        output = list_to_decimal(test_input)
