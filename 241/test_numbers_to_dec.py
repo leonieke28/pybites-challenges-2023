@@ -29,8 +29,14 @@ def test_invalid_input_types(test_input):
         list_to_decimal(test_input)
 
 
-def test_invalid_range():
-    test_input = [-3, 12]
-
+@pytest.mark.parametrize(
+    "test_input",
+    [
+        [-3, 12],
+        [0, 5, 11],
+        [9, 10],
+    ],
+)
+def test_invalid_range(test_input):
     with pytest.raises(ValueError):
         list_to_decimal(test_input)
