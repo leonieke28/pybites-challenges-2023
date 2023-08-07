@@ -5,4 +5,16 @@ def get_users(passwd: str) -> dict:
     replace multiple commas in name with a single space
     return dict of keys = user, values = name.
     """
-    pass
+    users_dict = {}
+    lines = passwd.strip().split("\n")
+    for line in lines:
+        user_info = line.split(":")
+        username = user_info[0]
+        name = user_info[4]
+        name = name.replace(",,,", "")
+        name = name.replace(",", " ")
+        if name == "":
+            name = "unknown"
+        users_dict[username] = name
+
+    return users_dict
