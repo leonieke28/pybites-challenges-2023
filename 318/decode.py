@@ -8,4 +8,7 @@ def get_credit_cards(data: bytes) -> List[str]:
     of "first_name,last_name,credit_card", from which you have
     to extract the credit card numbers.
     """
-    pass
+    decoded_data = base64.b64decode(data).decode("utf-8")
+    reader = csv.reader(decoded_data.splitlines())
+    next(reader)  # skip header
+    return [row[2] for row in reader]
