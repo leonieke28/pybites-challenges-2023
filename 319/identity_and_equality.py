@@ -20,18 +20,19 @@ class Car:
         """if / elif / else for exercise sake, if there would
         be more conditions we would use a dict / mapping
         """
-        if days is 7:  # *
+        if days == 7:  # *
             return "A week old"
-        elif days is 365:  # *
+        elif days == 365:  # *
             return "A year old"
         else:
             return "Neither a week, nor a year old"
 
     @staticmethod
     def has_same_configuration(config1, config2):
-        if type(config1) != list or type(config2) != list:  # *
+        if isinstance(config1, list) and isinstance(config2, list):  # *
+            return config1 == config2  # *
+        else:
             raise TypeError()
-        return config1 is config2  # *
 
 
 # TODO: Complete function
@@ -39,7 +40,7 @@ def is_same_car_color_and_model(car1, car2):
     """
     Returns true if car1 and car2 are the of same model and color
     """
-    pass
+    return car1 == car2
 
 
 # TODO: Complete function
@@ -47,4 +48,4 @@ def is_same_instance_of_car(car1, car2):
     """
     Returns true if car1 and car2 are exactly the same object (instance)
     """
-    pass
+    return car1 is car2
