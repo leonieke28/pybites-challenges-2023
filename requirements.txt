@@ -10,3 +10,9 @@ pytz
 requests
 textblob
 xlrd
+regex
+beautifulsoup4
+numpy
+freezegun
+fastapi
+pydantic
