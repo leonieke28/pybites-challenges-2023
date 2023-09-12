@@ -1,3 +1,8 @@
 from fastapi import FastAPI
 
-app = ...
+app = FastAPI()
+
+
+@app.get("/")
+async def root():
+    return {"message": "Welcome to PyBites' FastAPI Learning Path 🐍 🎉"}
