@@ -1,4 +1,5 @@
 import typer  # use typer.run and typer.Argument
+from typing_extensions import Annotated
 
 
 def sum_numbers(a: int, b: int):
@@ -7,10 +8,15 @@ def sum_numbers(a: int, b: int):
 
 
 def main(
-    # edit this
+    a: Annotated[int, typer.Argument(help="The value of the first summand")],
+    b: Annotated[int, typer.Argument(help="The value of the second summand")],
 ):
-    pass  # edit this
+    """
+    CLI that allows you to add two numbers
+    """
+    result = sum_numbers(a, b)
+    typer.echo(result)
 
 
 if __name__ == "__main__":
-    pass  # edit this
+    typer.run(main)
