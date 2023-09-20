@@ -9,10 +9,10 @@ def sum_numbers(a: int, b: int):
 
 def main(
     a: Annotated[
-        int, typer.Argument(help="The value of the first summand", show_default="3")
+        int, typer.Argument(help="The value of the first summand", default=...)
     ],
     b: Annotated[
-        int, typer.Argument(help="The value of the second summand", show_default="2")
+        int, typer.Argument(help="The value of the second summand", default=...)
     ],
 ):
     """
