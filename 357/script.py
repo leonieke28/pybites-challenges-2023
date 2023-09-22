@@ -9,6 +9,8 @@ import typer
 TMP = Path(os.getenv("TMP", "/tmp"))
 S3 = "https://bites-data.s3.us-east-2.amazonaws.com"
 
+print(TMP)
+
 
 def _setup():
     data_zipfile = "357-data.zip"
@@ -22,9 +24,9 @@ _setup()
 from algorithms import app as algo_app  # noqa E402
 from comparisons import app as compare_app  # noqa E402
 
-
 app = typer.Typer()
-
+app.add_typer(algo_app, name="algorithms")
+app.add_typer(compare_app, name="comparisons")
 
 if __name__ == "__main__":
     app()
