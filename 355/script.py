@@ -5,12 +5,13 @@ def sum_numbers(a: int, b: int):
     return a + b
 
 
-# TODO: initialize the app
+app = typer.Typer()
 
-# TODO: decorate this
+
+@app.command()
 def sum(
-    a,  # TODO: edit this
-    b,  # TODO: edit this
+    a: int = typer.Argument(..., help="The value of the first summand"),
+    b: int = typer.Argument(..., help="The value of the second summand"),
 ):
     """Command that allows you to add two numbers."""
     sum_ab = sum_numbers(a, b)
@@ -18,10 +19,12 @@ def sum(
     print(f"The sum is {sum_ab}")
 
 
-# TODO: decorate this
+@app.command()
 def compare(
-    c,  # TODO: edit this
-    d,  # TODO: edit this
+    c: int = typer.Argument(..., help="First number to compare against."),
+    d: int = typer.Argument(
+        ..., help="Second number that is compared against first number."
+    ),
 ):
     """Command that checks whether a number d is greater than a number c."""
 
@@ -34,4 +37,4 @@ def compare(
 
 
 if __name__ == "__main__":
-    pass  # TODO: edit this
+    app()
