@@ -21,11 +21,15 @@ def is_palindrome(word):
     Case insensitive, so Madam is valid too.
     It should work for phrases too so strip all but alphanumeric chars.
     So "No 'x' in 'Nixon'" should pass (see tests for more)"""
-    pass
+    word = "".join(ch for ch in word.lower() if ch.isalnum())
+    return word == word[::-1]
 
 
 def get_longest_palindrome(words=None):
     """Given a list of words return the longest palindrome
     If called without argument use the load_dictionary helper
     to populate the words list"""
-    pass
+    if words is None:
+        words = load_dictionary()
+    palindromes = [word for word in words if is_palindrome(word)]
+    return sorted(palindromes, key=len, reverse=True)[0]
