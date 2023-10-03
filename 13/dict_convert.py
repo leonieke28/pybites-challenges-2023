@@ -13,11 +13,13 @@ blog = dict(
 )
 
 # define namedtuple here
+Blog = namedtuple("Blog", blog.keys())
 
 
 def dict2nt(dict_):
-    pass
+    return Blog(*dict_.values())
 
 
 def nt2json(nt):
-    pass
+    nt = nt._replace(started=str(nt.started))
+    return json.dumps(nt._asdict())
