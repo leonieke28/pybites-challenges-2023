@@ -1,5 +1,8 @@
-from functools import wraps
-
-
 def make_html(element):
-    pass
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            return f"<{element}>{func(*args, **kwargs)}</{element}>"
+
+        return wrapper
+
+    return decorator
