@@ -33,9 +33,14 @@ class Promo:
     def _pick_random_bite(self):
         """Pick a random Bite that is not done yet, if all
         Bites are done, raise a NoBitesAvailable exception"""
-        pass
+        if bites_not_done := [x for x, _ in BITES.items() if x not in self.bites_done]:
+            return random.choice(bites_not_done)
+        else:
+            raise NoBitesAvailable
 
     def new_bite(self):
         """Get  a random Bite using _pick_random_bite,
         add it to self.bites_done, then return it"""
-        pass
+        bite = self._pick_random_bite()
+        self.bites_done.add(bite)
+        return bite
