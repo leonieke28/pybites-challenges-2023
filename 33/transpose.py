@@ -1,6 +1,11 @@
+from collections import namedtuple
+
+Member = namedtuple("Member", "name since_days karma_points bitecoin_earned")
+
+
 def transpose(data):
     """Transpose a data structure
-    1. dict
+    1. Dict
     data = {'2017-8': 19, '2017-9': 13}
     In:  transpose(data)
     Out: [('2017-8', '2017-9'), (19, 13)]
@@ -13,4 +18,9 @@ def transpose(data):
     In: transpose(data)
     Out: [('Bob', 'Julian'), (60, 221), (60, 34), (56, 78)]
     """
-    pass
+    # if data is type dict
+    if isinstance(data, dict):
+        return [data.keys(), data.values()]
+    # else (if data is a namedtuple)
+    else:
+        return list(zip(*data))
