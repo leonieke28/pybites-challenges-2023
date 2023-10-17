@@ -10,6 +10,9 @@ urllib.request.urlretrieve(
     "https://bites-data.s3.us-east-2.amazonaws.com/course_timings", COURSE_TIMES
 )
 
+with open(COURSE_TIMES) as file:
+    courses = file.readlines()
+
 
 def get_all_timestamps() -> List[str]:
     """Read in the COURSE_TIMES and extract all MM:SS timestamps.
@@ -22,10 +25,22 @@ def get_all_timestamps() -> List[str]:
 
      Return a list of MM:SS timestamps
     """
-    pass
+    lessons = [
+        course.split(" ")[-1].strip() for course in courses if course.endswith(")\n")
+    ]
+    return [lesson.strip("()") for lesson in lessons]
 
 
 def calc_total_course_duration(timestamps) -> str:
     """Takes timestamps list as returned by get_all_timestamps
     and calculates the total duration as HH:MM:SS"""
-    pass
+    total_course_duration = timedelta()
+    for i in timestamps:
+        (m, s) = i.split(":")
+        d = timedelta(minutes=int(m), seconds=int(s))
+        total_course_duration += d
+
+    return str(total_course_duration)
+
+
+calc_total_course_duration(get_all_timestamps())
