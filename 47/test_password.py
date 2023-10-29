@@ -36,3 +36,8 @@ def test_password_cache_cannot_reuse():
     assert validate_password("go1@PW")
     assert len(used_passwords) == num_passwords_use + 1
     assert not validate_password("go1@PW")
+
+
+def test_password_needs_two_lowercase_chars():
+    assert not validate_password("ABCa@;1")
+    assert not validate_password("PyBIT;$")
